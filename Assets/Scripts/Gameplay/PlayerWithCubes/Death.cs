@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerDeath : MonoBehaviour
+public class Death : MonoBehaviour
 {
     public event Action<bool> PlayerDied;
 

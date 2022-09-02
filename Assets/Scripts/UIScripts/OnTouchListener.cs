@@ -4,29 +4,30 @@ using UnityEngine.EventSystems;
 
 public class OnTouchListener : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    public event Action OnTouch;
-    public event Action<Touch> OnBeginSwipe;
-    public event Action OnEndSwipe;
+    public event Action Touched;
+    public event Action<Touch> BeganDrag;
+    public event Action<Touch> Dragging;
+    public event Action EndedDrag;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        OnBeginSwipe?.Invoke(Input.GetTouch(0));
+        BeganDrag?.Invoke(Input.GetTouch(0));
     }
-
-    //
+    
     public void OnDrag(PointerEventData eventData)
     {
-        // important
+
+        Dragging?.Invoke(Input.GetTouch(0));
     }
-    //
-    
+
     public void OnEndDrag(PointerEventData eventData)
     {
-        OnEndSwipe?.Invoke();
+        
+        EndedDrag?.Invoke();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        OnTouch?.Invoke();
+        Touched?.Invoke();
     }
 }

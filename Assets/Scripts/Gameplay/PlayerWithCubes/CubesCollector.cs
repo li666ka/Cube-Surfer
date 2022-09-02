@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListCubesController : MonoBehaviour
+public class CubesCollector : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
 
@@ -54,9 +54,12 @@ public class ListCubesController : MonoBehaviour
         cube.gameObject.name = "Cube";
         cube.gameObject.SetActive(false);
      
-        _player.transform.localPosition = new Vector3(_player.transform.localPosition.x,
+        _player.transform.localPosition = 
+            new Vector3(
+                _player.transform.localPosition.x,
                 _player.transform.localPosition.y + _height,
-                _player.transform.localPosition.z);
+                _player.transform.localPosition.z
+                );
 
         cube.transform.SetParent(transform);
         cube.transform.localPosition = new Vector3(0f, _listCubes[_listCubes.Count - 1].transform.localPosition.y + _height, 0f);
@@ -76,7 +79,7 @@ public class ListCubesController : MonoBehaviour
         StartCoroutine(RemoveCube(obj));
     }
 
-    private WaitForSeconds _waitForSeconds = new WaitForSeconds(3f);
+    private WaitForSeconds _waitForSeconds = new(3f);
 
     private IEnumerator RemoveCube(GameObject obj)
     {
